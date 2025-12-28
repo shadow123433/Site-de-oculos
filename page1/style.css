@@ -58,7 +58,7 @@ h3 {
 ========================= */
 .titulo-bg {
     position: relative;
-    background-image: url("imagem1.jpg");
+    background-image: url("/IMAGENS-DO-OCULOS/imagem1.jpg");
     background-size: cover;
     background-position: center;
     min-height: 300px;
