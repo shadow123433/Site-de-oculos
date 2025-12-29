@@ -22,7 +22,7 @@ body {
 h2 {
     text-align: center;
     font-size: 28px;
-    color: #111;
+    color: 000;
     margin-bottom: 30px;
 }
 
@@ -46,39 +46,42 @@ h3 {
 }
 
 .logo {
-    width: 110px;
+    width: 110px;   /* tamanho profissional */
     height: auto;
     display: block;
-    margin-bottom: 16px; /* distância entre logo e banner */
-    border-radius: 12px; /* borda arredondada */
 }
 
 /* =========================
    TÍTULO COM IMAGEM
 ========================= */
-.titulo-bg {
-    position: relative;
-    background-image: url("");
-    background-size: cover;
-    background-position: center;
-    min-height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.titulo-bg {                           /* Container do banner/título */
+    position: relative;               /* Base para posicionar o overlay (::before) */
+    background-image: url("/IMAGEM-BANNER/imagem1.jpg"); /* Imagem de fundo do banner */
+    background-size: cover;           /* Faz a imagem cobrir todo o container (pode cortar) */
+    background-position: center 10%;  /* Ajusta a posição vertical da imagem (desce um pouco) */
+    min-height: 300px;                /* Define altura mínima do banner */
+    display: flex;                    /* Ativa flexbox para alinhamento do conteúdo */
+    align-items: center;              /* Centraliza o conteúdo verticalmente */
+    justify-content: center;          /* Centraliza o conteúdo horizontalmente */
+    text-align: center;               /* Centraliza o texto */
 }
 
-.titulo-bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0,0,0,0.5);
+/* overlay escuro */
+.titulo-bg::before {                 /* Pseudo-elemento usado como camada escura */
+    content: "";                      /* Obrigatório para o pseudo-elemento existir */
+    position: absolute;               /* Permite cobrir todo o banner */
+    inset: 0;                         /* Ocupa 100% da largura e altura do container */
+    background-color: rgba(0, 0, 0, 0.55); /* Escurece a imagem sem escondê-la */
+    z-index: 1;                       /* Fica acima da imagem e abaixo do texto */
 }
 
-.titulo-bg h3 {
-    position: relative;
-    color: #fff;
-    font-size: 40px;
-    z-index: 1;
+/* texto do banner */
+.titulo-bg h1 {                      /* Título dentro do banner */
+    position: relative;               /* Permite controlar a camada (z-index) */
+    z-index: 2;                       /* Garante que o texto fique acima do overlay */
+    color: #ffffff;                   /* Define o texto como branco forte */
+    font-size: 40px;                  /* Tamanho grande para destaque */
+    margin: 0;                        /* Remove margens padrão do h1 */
 }
 
 /* =========================
@@ -92,7 +95,7 @@ h3 {
 }
 
 .marca-card {
-    background: #fff;
+    background: #f1f2f4;
     border-radius: 14px;
     padding: 24px;
     text-align: center;
@@ -213,7 +216,7 @@ h3 {
 ========================= */
 .carrinho {
     margin-top: 70px;
-    background: #fff;
+    background: #f1f2f4;
     padding: 26px;
     border-radius: 16px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.08);
@@ -395,3 +398,5 @@ h3 {
     outline: 2px solid #25D366;
     outline-offset: 2px;
 }
+
+

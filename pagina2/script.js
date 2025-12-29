@@ -47,10 +47,10 @@ function showToast(msg){
 ========================= */
 const produtosPorMarca = {
     RAYBAN:[
-        {nome:"Versão 1", preco:299.9, cores:["Preto","Dourado"], imagem:"/IMAGEM-OCULOS/imagem1.jpg"},
-        {nome:"Versão 2", preco:349.9, cores:["Preto","Marrom"], imagem:"/IMAGEM-OCULOS/imagem1.jpg"}
+        {nome:"", preco:349.9, cores:["Preto","Marrom","Dourado","Rosa","Amarelo"], imagem:"/IMAGEM-OCULOS/imagem1.jpg"}, 
     ],
 };
+
 
 /* =========================
    LIGHTBOX
@@ -209,7 +209,7 @@ ${itens}
 Total: R$ ${total.toFixed(2)}
     `.trim();
 
-    window.open(`https://wa.me/27998040952?text=${encodeURIComponent(mensagem)}`, "_blank");
+    window.open(`https://wa.me/27997913970?text=${encodeURIComponent(mensagem)}`, "_blank");
     carrinho = []; total = 0; atualizarCarrinho();
     modal.style.display="none";
 };

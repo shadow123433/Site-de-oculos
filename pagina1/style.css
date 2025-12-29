@@ -1,5 +1,5 @@
 body {
-  background-color: #e6f2ff; /* azul claro elegante */
+  background-color: #E6F2FF; /* azul claro elegante */
   margin: 0;
   padding: 0 20px; /* dá espaço nas laterais */
 }
@@ -21,7 +21,7 @@ h1 {
 
  .titulo-bg {                           /* Container do banner/título */
     position: relative;               /* Base para posicionar o overlay (::before) */
-    background-image: url(""); /* Imagem de fundo do banner */
+    background-image: url("/IMAGEM-BANNER/imagem1.jpg"); /* Imagem de fundo do banner */
     background-size: cover;           /* Faz a imagem cobrir todo o container (pode cortar) */
     background-position: center 10%;  /* Ajusta a posição vertical da imagem (desce um pouco) */
     min-height: 300px;                /* Define altura mínima do banner */
