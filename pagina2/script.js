@@ -47,17 +47,9 @@ function showToast(msg){
 ========================= */
 const produtosPorMarca = {
     RAYBAN:[
-        {nome:"Óculos Ray-Ban Aviador", preco:299.9, cores:["Preto","Dourado"], imagem:""},
-        {nome:"Óculos Ray-Ban Wayfarer", preco:349.9, cores:["Preto","Marrom"], imagem:""}
+        {nome:"Versão 1", preco:299.9, cores:["Preto","Dourado"], imagem:"/IMAGEM-OCULOS/imagem1.jpg"},
+        {nome:"Versão 2", preco:349.9, cores:["Preto","Marrom"], imagem:"/IMAGEM-OCULOS/imagem1.jpg"}
     ],
-    OAKLEY:[
-        {nome:"Óculos Oakley Radar", preco:399.9, cores:["Preto","Cinza"], imagem:""},
-        {nome:"Óculos Oakley Holbrook", preco:459.9, cores:["Preto","Prata"], imagem:""}
-    ],
-    PRADA:[
-        {nome:"Óculos Prada Linea Rossa", preco:699.9, cores:["Preto","Vermelho"], imagem:""},
-        {nome:"Óculos Prada Minimal", preco:799.9, cores:["Preto","Azul"], imagem:""}
-    ]
 };
 
 /* =========================

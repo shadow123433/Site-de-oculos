@@ -1,0 +1,145 @@
+body {
+  background-color: #e6f2ff; /* azul claro elegante */
+  margin: 0;
+  padding: 0 20px; /* dá espaço nas laterais */
+}
+
+p {
+    color: #333333; /* cor do texto */
+}
+
+
+
+
+/* centralizar o titulo uniformes martins */
+h1 {
+  text-align: center;
+  margin-top: 40px
+}
+
+
+
+ .titulo-bg {                           /* Container do banner/título */
+    position: relative;               /* Base para posicionar o overlay (::before) */
+    background-image: url(""); /* Imagem de fundo do banner */
+    background-size: cover;           /* Faz a imagem cobrir todo o container (pode cortar) */
+    background-position: center 10%;  /* Ajusta a posição vertical da imagem (desce um pouco) */
+    min-height: 300px;                /* Define altura mínima do banner */
+    display: flex;                    /* Ativa flexbox para alinhamento do conteúdo */
+    align-items: center;              /* Centraliza o conteúdo verticalmente */
+    justify-content: center;          /* Centraliza o conteúdo horizontalmente */
+    text-align: center;               /* Centraliza o texto */
+}
+
+/* overlay escuro */
+.titulo-bg::before {                 /* Pseudo-elemento usado como camada escura */
+    content: "";                      /* Obrigatório para o pseudo-elemento existir */
+    position: absolute;               /* Permite cobrir todo o banner */
+    inset: 0;                         /* Ocupa 100% da largura e altura do container */
+    background-color: rgba(0, 0, 0, 0.55); /* Escurece a imagem sem escondê-la */
+    z-index: 1;                       /* Fica acima da imagem e abaixo do texto */
+}
+
+/* texto do banner */
+.titulo-bg h1 {                      /* Título dentro do banner */
+    position: relative;               /* Permite controlar a camada (z-index) */
+    z-index: 2;                       /* Garante que o texto fique acima do overlay */
+    color: #ffffff;                   /* Define o texto como branco forte */
+    font-size: 40px;                  /* Tamanho grande para destaque */
+    margin: 0;                        /* Remove margens padrão do h1 */
+}
+
+
+
+
+/* Estiliza a seção com a foto e o texto */
+.secao {
+  display: flex;
+  align-items: center; /* centraliza verticalmente */
+  justify-content: center; /* centraliza horizontalmente */
+  gap: 40px; /* distância entre a foto e o texto */
+  padding: 40px 0; /* espaçamento superior e inferior */
+}
+
+/* Controla o tamanho da foto */
+.secao img {
+  width: 100%;
+  max-width: 400px; /* controla o tamanho máximo */
+  height: auto; /* mantém proporção */
+  border-radius: 10px;
+}
+
+
+
+
+/* cada lado tem 50 de largura*/
+.lado-direito {
+  flex: 1;
+}
+
+.lado-esquerdo {
+  flex: 1;
+}
+
+
+/* Deixa a imagem mais responsiva dentro da seção */
+img {
+  max-width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+
+/* centraliza todo o conteudo da pagina, limite de largura */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+
+
+
+
+
+/* Configura o botão pra ficar organizado para a segunda página */
+.botao-pagina {
+    bottom: 20px;
+    right: 20px;
+
+    float: right;
+    padding: 12px 20px;
+    background: #007bff;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+
+
+/* =========================
+   HEADER PROFISSIONAL
+========================= */
+.header {
+    width: 100%;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* =========================
+   LOGO
+========================= */
+.logo {
+    width: 110px;   /* tamanho profissional */
+    height: auto;
+    display: block;
+}
