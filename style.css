@@ -219,3 +219,38 @@ img {
   }
 
 }
+
+
+
+
+
+
+.objetivo-img {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.objetivo-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.objetivo-texto {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 16px;
+}
