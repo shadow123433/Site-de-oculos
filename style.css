@@ -254,3 +254,11 @@ img {
   text-align: center;
   padding: 0 16px;
 }
+
+
+/*bloqueia o zoom 2 dedos*/
+html, body {
+    touch-action: pan-y;             /* permite apenas scroll vertical */
+    -ms-touch-action: pan-y;         /* compatibilidade com IE */
+    overscroll-behavior-y: contain;  /* evita efeitos indesejados no scroll */
+}
