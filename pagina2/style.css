@@ -417,23 +417,73 @@ h3 {
 
 
 
-/* Estilo padrão para desktop */
-body {
-    text-align: left; /* ou center, se quiser centralizado no desktop */
-}
-
-/* Para telas menores que 768px (mobile) */
+/* =========================
+   AJUSTES MOBILE PROFISSIONAIS
+========================= */
 @media (max-width: 768px) {
-    body {
-        text-align: justify; /* deixa o texto justificado */
-    }
 
-    .container {
-        padding: 10px; /* deixa o conteúdo com um pouco de espaço nas laterais */
-    }
+  /* Layout geral */
+  body {
+    padding: 0 12px;
+  }
 
-    h1, h2, h3, p {
-        text-align: justify; /* garante que títulos e parágrafos também fiquem justificados */
-    }
+  /* Banner */
+  .titulo-bg {
+    min-height: 220px;
+    padding: 20px;
+  }
+
+  .titulo-bg h1 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  /* Seção imagem + texto */
+  .secao {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .lado-esquerdo,
+  .lado-direito {
+    width: 100%;
+  }
+
+  /* Imagens */
+  .secao img {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Textos */
+  h1, h2, h3 {
+    text-align: center;
+  }
+
+  p {
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* Container */
+  .container {
+    padding: 12px;
+  }
+
+  /* Botão */
+  .botao-pagina {
+    float: none;
+    display: block;
+    margin: 20px auto 0;
+    text-align: center;
+  }
+
+  /* Logo */
+  .logo {
+    width: 90px;
+  }
+
 }
-
