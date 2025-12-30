@@ -413,3 +413,27 @@ h3 {
     font-size: 16px;       /* mesmo tamanho da página 1 */
 }
 
+
+
+
+
+/* Estilo padrão para desktop */
+body {
+    text-align: left; /* ou center, se quiser centralizado no desktop */
+}
+
+/* Para telas menores que 768px (mobile) */
+@media (max-width: 768px) {
+    body {
+        text-align: justify; /* deixa o texto justificado */
+    }
+
+    .container {
+        padding: 10px; /* deixa o conteúdo com um pouco de espaço nas laterais */
+    }
+
+    h1, h2, h3, p {
+        text-align: justify; /* garante que títulos e parágrafos também fiquem justificados */
+    }
+}
+
