@@ -47,7 +47,7 @@ function showToast(msg){
 ========================= */
 const produtosPorMarca = {
     RAYBAN:[
-        {nome:"", preco:349.9, cores:["Preto","Marrom","Dourado","Rosa","Amarelo"], imagem:"/IMAGEM-OCULOS/imagem1.jpg"}, 
+        {nome:"", preco:349.9, cores:["Preto","Marrom","Dourado","Rosa","Amarelo"], imagem:"IMAGEM-OCULOS/imagem1.jpg"}, 
     ],
 };
 
