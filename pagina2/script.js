@@ -249,7 +249,7 @@ modal.querySelector("#confirmar").onclick = () => {
   }).join("\n");
 
   const mensagem = `
-*NOVO PEDIDO*
+*NOVO PEDIDO DE OCULOS*
 Pedido: ${pedidoID}
 
 Nome: ${nome}
