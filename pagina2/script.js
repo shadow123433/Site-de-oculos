@@ -4,212 +4,291 @@
 let carrinho = [];
 let total = 0;
 
-/* =========================
-   ELEMENTOS FIXOS
-========================= */
-const carrinhoTexto = document.querySelector(".carrinho p");
-const totalTexto = document.querySelector(".total");
-const finalizarBtn = document.querySelector(".finalizar");
-const botoesMarca = document.querySelectorAll(".marca-card button");
-const containerMarcas = document.querySelector(".marcas-grid");
+function gerarPedidoID() {
+  return "PED-" + Date.now().toString().slice(-6);
+}
 
 /* =========================
-   TOAST PROFISSIONAL
+   ELEMENTOS DO DOM
+========================= */
+const container = document.querySelector(".container");
+const secaoMarcas = document.querySelector(".marcas");
+const botoesMarca = document.querySelectorAll(".marca-card button");
+
+const produtosSec = document.querySelector(".produtos");
+const produtosGrid = produtosSec.querySelector(".produtos-grid");
+const fecharProdutosBtn = document.getElementById("fecharProdutos");
+
+const carrinhoContainer = document.querySelector(".itens-carrinho");
+const totalValor = document.getElementById("valorTotal");
+const finalizarBtn = document.querySelector(".finalizar");
+
+/* =========================
+   TOAST
 ========================= */
 const toast = document.createElement("div");
 toast.className = "toast";
-toast.style.position = "fixed";
-toast.style.top = "20px";
-toast.style.right = "20px";
-toast.style.backgroundColor = "#000";
-toast.style.color = "#fff";
-toast.style.padding = "12px 18px";
-toast.style.borderRadius = "12px";
-toast.style.boxShadow = "0 6px 18px rgba(0,0,0,0.2)";
-toast.style.zIndex = "99999";
-toast.style.fontWeight = "bold";
-toast.style.display = "none";
 document.body.appendChild(toast);
 
-let toastTimeout;
-function showToast(msg){
-    toast.textContent = msg;
-    toast.style.display = "block";
-
-    if(toastTimeout) clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => {
-        toast.style.display = "none";
-    }, 2500);
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 2500);
 }
 
 /* =========================
    PRODUTOS POR MARCA
 ========================= */
 const produtosPorMarca = {
-    RAYBAN:[
-        {nome:"", preco:349.9, cores:["Preto","Marrom","Dourado","Rosa","Amarelo"], imagem:"../IMAGEM-OCULOS/imagem1.jpg"}, 
-    ],
+  ROMEO: [
+    {
+      nome: "Óculos Romeo 2 Full Metal",
+      preco: 349.9,
+      cores: ["Preto", "Prata"],
+      imagem: "../IMAGEM-OCULOS/imagem1.jpg"
+    }
+  ]
 };
-
 
 /* =========================
    LIGHTBOX
 ========================= */
 const lightbox = document.createElement("div");
-lightbox.id = "lightbox";
 lightbox.className = "lightbox-overlay";
-lightbox.innerHTML = `<img src="" alt="Óculos em tela cheia">`;
+lightbox.innerHTML = `<span class="fechar-lightbox">✖</span><img src="">`;
 document.body.appendChild(lightbox);
+
 const lightboxImg = lightbox.querySelector("img");
-lightbox.onclick = e => { if(e.target !== lightboxImg){ lightbox.style.display="none"; lightboxImg.src=""; } };
+const fecharLightbox = lightbox.querySelector(".fechar-lightbox");
 
 /* =========================
-   FUNÇÃO PARA MOSTRAR PRODUTOS
+   MOSTRAR PRODUTOS
 ========================= */
-let produtosAtivos = null;
+function mostrarProdutos(marca) {
+  produtosGrid.innerHTML = "";
 
-function toggleProdutos(btn, marca){
-    if(produtosAtivos){
-        produtosAtivos.remove();
-        if(produtosAtivos === btn) { produtosAtivos = null; return; }
-        produtosAtivos = null;
-    }
+  const produtos = produtosPorMarca[marca];
+  if (!produtos) return showToast("Marca inválida");
 
-    const produtos = produtosPorMarca[marca];
-    if(!produtos) return showToast("Produtos não encontrados");
+  produtos.forEach(produto => {
+    const card = document.createElement("div");
+    card.className = "produto-card";
 
-    const containerProdutos = document.createElement("div");
-    containerProdutos.className = "produtos-container";
-    containerProdutos.style.marginTop = "40px";
+    card.innerHTML = `
+      <img src="${produto.imagem}" class="produto-img">
+      <strong>${produto.nome}</strong>
 
-    const grid = document.createElement("div");
-    grid.className = "produtos-grid";
+      <select>
+        <option value="">Selecione a cor</option>
+        ${produto.cores.map(c => `<option value="${c}">${c}</option>`).join("")}
+      </select>
 
-    produtos.forEach(produto=>{
-        const card = document.createElement("div");
-        card.className = "produto-card";
-        card.innerHTML = `
-            <img src="${produto.imagem}" class="produto-img">
-            <strong>${produto.nome}</strong>
-            <select>
-                <option value="">Selecione a cor</option>
-                ${produto.cores.map(c=>`<option value="${c}">${c}</option>`).join("")}
-            </select>
-            <div class="preco">R$ ${produto.preco.toFixed(2)}</div>
-            <button class="botao-primario">Adicionar</button>
-        `;
+      <div class="preco">R$ ${produto.preco.toFixed(2)}</div>
+      <button type="button">Adicionar</button>
+    `;
 
-        card.querySelector(".produto-img").onclick = () => {
-            lightboxImg.src = produto.imagem;
-            lightbox.style.display = "flex";
-        };
+    card.querySelector("img").onclick = () => {
+      lightboxImg.src = produto.imagem;
+      lightbox.style.display = "flex";
+      document.body.style.overflow = "hidden";
+      resetLightbox();
+    };
 
-        card.querySelector("button").onclick = () => {
-            const cor = card.querySelector("select").value;
-            if(!cor) return showToast("Selecione a cor");
-            addCarrinho(`${produto.nome} - Cor: ${cor}`, produto.preco);
-        };
+    card.querySelector("button").onclick = () => {
+      const cor = card.querySelector("select").value;
+      if (!cor) return showToast("Selecione uma cor");
+      adicionarAoCarrinho(produto.nome, cor, produto.preco);
+    };
 
-        grid.appendChild(card);
-    });
+    produtosGrid.appendChild(card);
+  });
 
-    const botaoVoltar = document.createElement("button");
-    botaoVoltar.className = "botao-voltar";
-    botaoVoltar.textContent = "← Voltar";
-    botaoVoltar.style.marginTop = "20px";
-    botaoVoltar.onclick = () => containerProdutos.remove();
-
-    containerProdutos.appendChild(grid);
-    containerProdutos.appendChild(botaoVoltar);
-
-    containerMarcas.insertAdjacentElement("afterend", containerProdutos);
-    produtosAtivos = containerProdutos;
+  secaoMarcas.style.display = "none";
+  produtosSec.hidden = false;
+  produtosSec.scrollIntoView({ behavior: "smooth" });
 }
-
-/* =========================
-   EVENTOS MARCAS
-========================= */
-botoesMarca.forEach(btn => {
-    btn.onclick = () => toggleProdutos(btn, btn.dataset.marca);
-});
 
 /* =========================
    CARRINHO
 ========================= */
-function addCarrinho(nome, preco){
-    carrinho.push({nome, preco});
-    total += preco;
-    atualizarCarrinho();
-    showToast("Item adicionado ao carrinho");
+function adicionarAoCarrinho(produto, cor, preco) {
+  let item = carrinho.find(i => i.produto === produto);
+
+  if (!item) {
+    item = { produto, cores: {}, precoUnitario: preco };
+    carrinho.push(item);
+  }
+
+  item.cores[cor] = (item.cores[cor] || 0) + 1;
+  total += preco;
+
+  atualizarCarrinho();
+  showToast("Item adicionado");
 }
 
-function atualizarCarrinho(){
-    if(carrinho.length){
-        carrinhoTexto.innerHTML = carrinho.map((i, idx) => `• ${i.nome} <button onclick="removerItem(${idx})">❌</button>`).join("<br>");
-    } else {
-        carrinhoTexto.innerHTML = "Nenhum item adicionado.";
-        showToast("Nenhum item adicionado");
-    }
-    totalTexto.innerHTML = `<strong>Total:</strong> R$ ${total.toFixed(2)}`;
+function atualizarCarrinho() {
+  carrinhoContainer.innerHTML = "";
+
+  if (!carrinho.length) {
+    carrinhoContainer.innerHTML = `<p class="carrinho-vazio">Nenhum item adicionado.</p>`;
+    totalValor.textContent = "0,00";
+    return;
+  }
+
+  carrinho.forEach(item => {
+    const cores = Object.entries(item.cores)
+      .map(([cor, qtd]) => `${cor} × ${qtd}`)
+      .join(" | ");
+
+    const linha = document.createElement("div");
+    linha.style.display = "flex";
+    linha.style.justifyContent = "space-between";
+    linha.style.marginBottom = "6px";
+
+    linha.innerHTML = `
+      <span>• ${item.produto} (${cores})</span>
+      <span style="cursor:pointer; color:red; font-weight:bold;">✖</span>
+    `;
+
+    linha.querySelector("span:last-child").onclick = () => removerItem(item.produto);
+    carrinhoContainer.appendChild(linha);
+  });
+
+  totalValor.textContent = total.toFixed(2);
 }
 
-function removerItem(idx){
-    total -= carrinho[idx].preco;
-    carrinho.splice(idx,1);
-    atualizarCarrinho();
+function removerItem(produto) {
+  const index = carrinho.findIndex(i => i.produto === produto);
+  if (index === -1) return;
+
+  const item = carrinho[index];
+  const qtd = Object.values(item.cores).reduce((a, b) => a + b, 0);
+
+  total -= qtd * item.precoUnitario;
+  carrinho.splice(index, 1);
+
+  atualizarCarrinho();
+  showToast("Item removido");
 }
 
 /* =========================
-   MODAL FINALIZAR PEDIDO
+   MODAL DE CONFIRMAÇÃO
 ========================= */
 const modal = document.createElement("div");
 modal.className = "modal-overlay";
 modal.style.display = "none";
+
 modal.innerHTML = `
-    <div class="modal">
-        <h2>Confirmação de entrega</h2>
-        <input id="nome" placeholder="Nome completo">
-        <input id="whats" placeholder="WhatsApp">
-        <input id="endereco" placeholder="Rua / Avenida">
-        <input id="numero" placeholder="Número da casa">
-        <input id="referencia" placeholder="Ponto de referência">
-        <div>
-            <button id="cancelar">Cancelar</button>
-            <button id="confirmar">Confirmar pedido</button>
-        </div>
+  <div class="modal">
+    <h2>Confirmação do pedido</h2>
+    <input id="nome" placeholder="Nome completo">
+    <input id="whats" placeholder="WhatsApp">
+    <input id="endereco" placeholder="Rua / Avenida">
+    <input id="numero" placeholder="Número">
+    <input id="referencia" placeholder="Referência">
+    <div>
+      <button id="cancelar">Cancelar</button>
+      <button id="confirmar">Confirmar pedido</button>
     </div>
+  </div>
 `;
+
 document.body.appendChild(modal);
 
-finalizarBtn.onclick = () => {
-    if(!carrinho.length) return showToast("Carrinho vazio! Adicione ao menos um item.");
-    modal.style.display = "flex";
+/* =========================
+   EVENTOS
+========================= */
+botoesMarca.forEach(btn => {
+  btn.onclick = () => mostrarProdutos(btn.dataset.marca);
+});
+
+fecharProdutosBtn.onclick = () => {
+  produtosSec.hidden = true;
+  secaoMarcas.style.display = "block";
 };
 
-modal.querySelector("#cancelar").onclick = () => modal.style.display = "none";
+finalizarBtn.onclick = () => {
+  if (!carrinho.length) return showToast("Carrinho vazio");
+  modal.style.display = "flex";
+};
+
+modal.querySelector("#cancelar").onclick = () => {
+  modal.style.display = "none";
+};
 
 modal.querySelector("#confirmar").onclick = () => {
-    const nome = modal.querySelector("#nome").value.trim();
-    const whats = modal.querySelector("#whats").value.trim();
-    const endereco = modal.querySelector("#endereco").value.trim();
-    const numero = modal.querySelector("#numero").value.trim();
-    const referencia = modal.querySelector("#referencia").value.trim();
+  const nome = modal.querySelector("#nome").value;
+  const whats = modal.querySelector("#whats").value;
+  const endereco = modal.querySelector("#endereco").value;
+  const numero = modal.querySelector("#numero").value;
+  const referencia = modal.querySelector("#referencia").value;
 
-    if(!nome || !whats || !endereco || !numero) return showToast("Preencha os campos obrigatórios");
+  if (!nome || !whats || !endereco || !numero)
+    return showToast("Preencha os campos obrigatórios");
 
-    const itens = carrinho.map(i => `- ${i.nome} (R$ ${i.preco.toFixed(2)})`).join("\n");
-    const mensagem = `
-*NOVO PEDIDO DE ÓCULOS*
+  const pedidoID = gerarPedidoID();
+
+  const itens = carrinho.map(item => {
+    const cores = Object.entries(item.cores)
+      .map(([cor, qtd]) => `${cor} × ${qtd}`)
+      .join(" | ");
+    return `- ${item.produto} (${cores})`;
+  }).join("\n");
+
+  const mensagem = `
+*NOVO PEDIDO*
+Pedido: ${pedidoID}
+
 Nome: ${nome}
 WhatsApp: ${whats}
-Endereço: ${endereco}, Nº ${numero}
-${referencia ? "📌 Ref: " + referencia : ""}
+
+Endereço:
+${endereco}, Nº ${numero}
+${referencia ? "Ref: " + referencia : ""}
+
 Itens:
 ${itens}
-Total: R$ ${total.toFixed(2)}
-    `.trim();
 
-    window.open(`https://wa.me/27997913970?text=${encodeURIComponent(mensagem)}`, "_blank");
-    carrinho = []; total = 0; atualizarCarrinho();
-    modal.style.display="none";
+⚠️ Valor confirmado pela loja
+`.trim();
+
+  window.open(
+    `https://wa.me/27998040952?text=${encodeURIComponent(mensagem)}`,
+    "_blank"
+  );
+
+  carrinho = [];
+  total = 0;
+  atualizarCarrinho();
+  modal.style.display = "none";
 };
+
+/* =========================
+   LIGHTBOX CONTROLES
+========================= */
+fecharLightbox.onclick = () => {
+  lightbox.style.display = "none";
+  document.body.style.overflow = "auto";
+  resetLightbox();
+};
+
+/* =========================
+   ZOOM
+========================= */
+let scale = 1;
+const MIN_SCALE = 1;
+const MAX_SCALE = 4;
+
+function resetLightbox() {
+  scale = 1;
+  lightboxImg.style.transformOrigin = "center center";
+  lightboxImg.style.transform = "scale(1)";
+}
+
+lightboxImg.addEventListener("wheel", e => {
+  e.preventDefault();
+  scale += e.deltaY * -0.004;
+  scale = Math.min(Math.max(MIN_SCALE, scale), MAX_SCALE);
+  lightboxImg.style.transform = `scale(${scale})`;
+}, { passive: false });
+

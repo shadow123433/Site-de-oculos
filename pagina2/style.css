@@ -8,94 +8,106 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* =========================
+   BODY
+========================= */
+html, body {
+    touch-action: pan-y;
+    overscroll-behavior-y: contain;
+}
+
 body {
     background-color: #E6F2FF;
     padding: 0 20px;
 }
 
+/* =========================
+   CONTAINER
+========================= */
 .container {
     max-width: 1100px;
     margin: auto;
     padding: 20px;
 }
 
+/* =========================
+   HEADER / LOGO
+========================= */
+.header {
+    width: 100%;
+    background-color: #E6F2FF;
+    padding: 10px 0;
+}
+
+.logo {
+    width: 110px;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+/* =========================
+   BANNER / TÍTULO
+========================= */
+.pagina2 .titulo-bg {
+    position: relative;
+    background-image: url("../IMAGEM-BANNER/imagem1.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagina2 .titulo-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.pagina2 .titulo-bg h1 {
+    position: relative;
+    color: #fff;
+    font-size: 40px;
+    z-index: 1;
+}
+
+/* =========================
+   TÍTULOS
+========================= */
+h1 { color: #fff; }
+
 h2 {
     text-align: center;
     font-size: 28px;
-    color: 000;
+    color: #111;
     margin-bottom: 30px;
 }
 
 h3 {
     text-align: center;
-    font-size: 30px;
-    margin-top: 40px;
+    font-size: 20px;
+    margin-bottom: 18px;
     color: #111;
 }
 
 /* =========================
-   HEADER E LOGO
+   MARCAS
 ========================= */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 10px 0;
-    border-bottom: none;
-    background: transparent;
+.marcas {
+    margin-top: 60px;
 }
 
-.logo {
-    width: 110px;   /* tamanho profissional */
-    height: auto;
-    display: block;
-}
-
-/* =========================
-   TÍTULO COM IMAGEM
-========================= */
-.titulo-bg {                           /* Container do banner/título */
-    position: relative;               /* Base para posicionar o overlay (::before) */
-    background-image: url("../IMAGEM-BANNER/imagem1.jpg"); /* Imagem de fundo do banner */
-    background-size: cover;           /* Faz a imagem cobrir todo o container (pode cortar) */
-    background-position: center 10%;  /* Ajusta a posição vertical da imagem (desce um pouco) */
-    min-height: 300px;                /* Define altura mínima do banner */
-    display: flex;                    /* Ativa flexbox para alinhamento do conteúdo */
-    align-items: center;              /* Centraliza o conteúdo verticalmente */
-    justify-content: center;          /* Centraliza o conteúdo horizontalmente */
-    text-align: center;               /* Centraliza o texto */
-}
-
-/* overlay escuro */
-.titulo-bg::before {                 /* Pseudo-elemento usado como camada escura */
-    content: "";                      /* Obrigatório para o pseudo-elemento existir */
-    position: absolute;               /* Permite cobrir todo o banner */
-    inset: 0;                         /* Ocupa 100% da largura e altura do container */
-    background-color: rgba(0, 0, 0, 0.55); /* Escurece a imagem sem escondê-la */
-    z-index: 1;                       /* Fica acima da imagem e abaixo do texto */
-}
-
-/* texto do banner */
-.titulo-bg h1 {                      /* Título dentro do banner */
-    position: relative;               /* Permite controlar a camada (z-index) */
-    z-index: 2;                       /* Garante que o texto fique acima do overlay */
-    color: #ffffff;                   /* Define o texto como branco forte */
-    font-size: 40px;                  /* Tamanho grande para destaque */
-    margin: 0;                        /* Remove margens padrão do h1 */
-}
-
-/* =========================
-   SEÇÃO MARCAS
-========================= */
 .marcas-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 24px;
-    margin-top: 60px;
 }
 
 .marca-card {
-    background: #f1f2f4;
+    background: #fff;
     border-radius: 14px;
     padding: 24px;
     text-align: center;
@@ -106,11 +118,6 @@ h3 {
 .marca-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-}
-
-.marca-card h3 {
-    margin-bottom: 18px;
-    font-size: 20px;
 }
 
 .marca-card button {
@@ -132,11 +139,14 @@ h3 {
 /* =========================
    PRODUTOS
 ========================= */
+.produtos {
+    margin-top: 70px;
+}
+
 .produtos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 26px;
-    margin-top: 40px;
 }
 
 .produto-card {
@@ -154,16 +164,18 @@ h3 {
     box-shadow: 0 22px 45px rgba(0,0,0,0.14);
 }
 
-.produto-card h3 {
-    font-size: 18px;
-    text-align: left;
-    margin-bottom: 6px;
+.produto-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
 }
 
-.produto-preco {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 18px;
+.produto-img:hover {
+    transform: scale(1.05);
 }
 
 .produto-card select {
@@ -171,12 +183,19 @@ h3 {
     padding: 12px 14px;
     border-radius: 10px;
     border: 1px solid #ddd;
+    font-size: 14px;
     margin-bottom: 18px;
 }
 
 .produto-card select:focus {
     outline: none;
     border-color: #000;
+}
+
+.preco {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 18px;
 }
 
 .produto-card button {
@@ -196,34 +215,20 @@ h3 {
     transform: scale(1.03);
 }
 
-.produto-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.produto-img:hover {
-    transform: scale(1.05);
-}
-
 /* =========================
    CARRINHO
 ========================= */
 .carrinho {
     margin-top: 70px;
-    background: #f1f2f4;
+    background: #fff;
     padding: 26px;
     border-radius: 16px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
-.carrinho h2 {
-    margin-bottom: 16px;
+.itens-carrinho {
+    margin-top: 10px;
+    font-size: 15px;
 }
 
 .total {
@@ -251,29 +256,58 @@ h3 {
 }
 
 /* =========================
-   LIGHTBOX
+   BOTÕES
 ========================= */
-.lightbox-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    cursor: zoom-out;
-    padding: 20px;
+.botao-voltar {
+    margin-top: 40px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    background: transparent;
+    border: 2px solid #000;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
 }
 
-.lightbox-overlay img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+.botao-voltar:hover {
+    background: #000;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.botao-voltar-inicio {
+    display: inline-block;
+    margin: 20px;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: #fff;
     border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* =========================
+   TOAST
+========================= */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #000;
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* =========================
@@ -296,7 +330,11 @@ h3 {
     padding: 30px;
     border-radius: 16px;
     box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-    animation: modalFade 0.3s ease;
+}
+
+.modal h2 {
+    text-align: center;
+    margin-bottom: 22px;
 }
 
 .modal input {
@@ -305,11 +343,6 @@ h3 {
     margin-bottom: 14px;
     border-radius: 10px;
     border: 1px solid #ddd;
-}
-
-.modal input:focus {
-    outline: none;
-    border-color: #000;
 }
 
 .modal div {
@@ -321,176 +354,57 @@ h3 {
     flex: 1;
     padding: 12px 20px;
     border-radius: 12px;
-    font-size: 15px;
     font-weight: bold;
-    cursor: pointer;
     border: none;
-    transition: all 0.25s ease;
+    cursor: pointer;
 }
 
 #cancelar {
     background: #f5f5f5;
-    color: #333;
     border: 2px solid #ccc;
-}
-
-#cancelar:hover {
-    background: #e0e0e0;
-    border-color: #999;
 }
 
 #confirmar {
     background: #25D366;
     color: #fff;
-    border: 2px solid #25D366;
-}
-
-#confirmar:hover {
-    background-color: #1da851;
-    border-color: #1da851;
-    transform: scale(1.03);
 }
 
 /* =========================
-   ANIMAÇÃO MODAL
+   LIGHTBOX
 ========================= */
-@keyframes modalFade {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
-/* =========================
-   BOTÃO VOLTAR
-========================= */
-.botao-voltar {
-    display: inline-block;
-    padding: 12px 24px;
-    margin-top: 20px;
-    background-color: #000;
-    color: #fff;
+.lightbox-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.lightbox-overlay .fechar-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 36px;
+    color: red;
     font-weight: bold;
-    font-size: 15px;
-    border: none;
-    border-radius: 12px;
     cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
-
-.botao-voltar:hover {
-    background-color: #222;
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-.botao-voltar:active {
-    transform: translateY(0) scale(0.98);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.botao-voltar:focus {
-    outline: 2px solid #25D366;
-    outline-offset: 2px;
-}
-
-
-.botao-voltar-inicio {
-    display: inline-block;
-    float: left;           /* botão fica à esquerda */
-    margin: 20px;          /* espaço ao redor */
-    padding: 12px 20px;    /* tamanho do botão */
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;       /* mesmo tamanho da página 1 */
-}
-
-
-
-
 
 /* =========================
-   AJUSTES MOBILE PROFISSIONAIS
+   RESPONSIVO
 ========================= */
 @media (max-width: 768px) {
-
-  /* Layout geral */
-  body {
-    padding: 0 12px;
-  }
-
-  /* Banner */
-  .titulo-bg {
-    min-height: 220px;
-    padding: 20px;
-  }
-
-  .titulo-bg h1 {
-    font-size: 26px;
-    line-height: 1.2;
-  }
-
-  /* Seção imagem + texto */
-  .secao {
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px 0;
-    text-align: center;
-  }
-
-  .lado-esquerdo,
-  .lado-direito {
-    width: 100%;
-  }
-
-  /* Imagens */
-  .secao img {
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  /* Textos */
-  h1, h2, h3 {
-    text-align: center;
-  }
-
-  p {
-    text-align: left;
-    font-size: 15px;
-    line-height: 1.5;
-  }
-
-  /* Container */
-  .container {
-    padding: 12px;
-  }
-
-  /* Botão */
-  .botao-pagina {
-    float: none;
-    display: block;
-    margin: 20px auto 0;
-    text-align: center;
-  }
-
-  /* Logo */
-  .logo {
-    width: 90px;
-  }
-
-}
-
-/*bloqueia o zoom 2 dedos*/
-html, body {
-    touch-action: pan-y;             /* permite apenas scroll vertical */
-    -ms-touch-action: pan-y;         /* compatibilidade com IE */
-    overscroll-behavior-y: contain;  /* evita efeitos indesejados no scroll */
+    body { padding: 0 12px; }
+    .titulo-bg { min-height: 220px; }
+    .titulo-bg h1 { font-size: 26px; }
+    .logo { width: 90px; }
 }
