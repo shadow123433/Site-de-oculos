@@ -8,6 +8,12 @@ p {
     color: #333333; /* cor do texto */
 }
 
+hr {
+    border: 0;
+    height: 2px;
+    background-color: rgba(0,0,0,0.15);
+    margin: 40px 0;
+}
 
 
 
