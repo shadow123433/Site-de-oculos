@@ -249,7 +249,7 @@ ${referencia ? "Ref: " + referencia : ""}
 Itens:
 ${itens}
 
-⚠️ Valor confirmado pela loja
+⚠️ Valor será confirmado pela loja
 `.trim();
 
   window.open(
