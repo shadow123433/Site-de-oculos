@@ -129,43 +129,56 @@ function adicionarAoCarrinho(produto, cor, preco) {
 function atualizarCarrinho() {
   carrinhoContainer.innerHTML = "";
 
-  if (!carrinho.length) {
-    carrinhoContainer.innerHTML = `<p class="carrinho-vazio">Nenhum item adicionado.</p>`;
-    totalValor.textContent = "0,00";
-    return;
-  }
-
   carrinho.forEach(item => {
-    const cores = Object.entries(item.cores)
-      .map(([cor, qtd]) => `${cor} × ${qtd}`)
-      .join(" | ");
+    Object.entries(item.cores).forEach(([cor, qtd]) => {
+      const linha = document.createElement("div");
+      linha.className = "linha-carrinho";
 
-    const linha = document.createElement("div");
-    linha.style.display = "flex";
-    linha.style.justifyContent = "space-between";
-    linha.style.marginBottom = "6px";
+      linha.innerHTML = `
+        <span>• ${item.produto} (${cor} × ${qtd})</span>
+        <button 
+          class="btn-remover" 
+          data-produto="${item.produto}" 
+          data-cor="${cor}"
+        >✖</button>
+      `;
 
-    linha.innerHTML = `
-      <span>• ${item.produto} (${cores})</span>
-      <span style="cursor:pointer; color:red; font-weight:bold;">✖</span>
-    `;
+      carrinhoContainer.appendChild(linha);
+    });
+  });
 
-    linha.querySelector("span:last-child").onclick = () => removerItem(item.produto);
-    carrinhoContainer.appendChild(linha);
+  document.querySelectorAll(".btn-remover").forEach(btn => {
+    btn.onclick = e => {
+      removerItem(
+        e.target.dataset.produto,
+        e.target.dataset.cor
+      );
+    };
   });
 
   totalValor.textContent = total.toFixed(2);
 }
 
-function removerItem(produto) {
-  const index = carrinho.findIndex(i => i.produto === produto);
-  if (index === -1) return;
 
-  const item = carrinho[index];
-  const qtd = Object.values(item.cores).reduce((a, b) => a + b, 0);
 
-  total -= qtd * item.precoUnitario;
-  carrinho.splice(index, 1);
+function removerItem(produto, cor) {
+  const itemIndex = carrinho.findIndex(i => i.produto === produto);
+  if (itemIndex === -1) return;
+
+  const item = carrinho[itemIndex];
+
+  if (!item.cores[cor]) return;
+
+  item.cores[cor]--;
+  total -= item.precoUnitario;
+
+  if (item.cores[cor] === 0) {
+    delete item.cores[cor];
+  }
+
+  if (Object.keys(item.cores).length === 0) {
+    carrinho.splice(itemIndex, 1);
+  }
 
   atualizarCarrinho();
   showToast("Item removido");
