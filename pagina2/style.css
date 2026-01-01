@@ -49,16 +49,18 @@ body {
 /* =========================
    BANNER / TÍTULO
 ========================= */
-.pagina2 .titulo-bg {
-    position: relative;
-    background-image: url("../IMAGEM-BANNER/imagem1.jpg");
-    background-size: cover;
-    background-position: center;
-    min-height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+ .titulo-bg {                           /* Container do banner/título */
+    position: relative;               /* Base para posicionar o overlay (::before) */
+    background-image: url("../IMAGEM-BANNER/imagem1.jpg"); /* Imagem de fundo do banner */
+    background-size: cover;           /* Faz a imagem cobrir todo o container (pode cortar) */
+    background-position: center 10%;  /* Ajusta a posição vertical da imagem (desce um pouco) */
+    min-height: 300px;                /* Define altura mínima do banner */
+    display: flex;                    /* Ativa flexbox para alinhamento do conteúdo */
+    align-items: center;              /* Centraliza o conteúdo verticalmente */
+    justify-content: center;          /* Centraliza o conteúdo horizontalmente */
+    text-align: center;               /* Centraliza o texto */
 }
+
 
 .pagina2 .titulo-bg::before {
     content: "";
