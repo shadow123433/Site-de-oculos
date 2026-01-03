@@ -305,3 +305,35 @@ lightboxImg.addEventListener("wheel", e => {
   lightboxImg.style.transform = `scale(${scale})`;
 }, { passive: false });
 
+
+
+
+let startDistance = 0;
+
+lightboxImg.addEventListener("touchstart", e => {
+  if (e.touches.length === 2) {
+    startDistance = getDistance(e.touches[0], e.touches[1]);
+  }
+}, { passive: false });
+
+lightboxImg.addEventListener("touchmove", e => {
+  if (e.touches.length === 2) {
+    e.preventDefault();
+
+    const newDistance = getDistance(e.touches[0], e.touches[1]);
+    const zoomFactor = newDistance / startDistance;
+
+    scale *= zoomFactor;
+    scale = Math.min(Math.max(MIN_SCALE, scale), MAX_SCALE);
+
+    lightboxImg.style.transform = `scale(${scale})`;
+    startDistance = newDistance;
+  }
+}, { passive: false });
+
+function getDistance(touch1, touch2) {
+  const dx = touch1.clientX - touch2.clientX;
+  const dy = touch1.clientY - touch2.clientY;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
