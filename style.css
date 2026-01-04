@@ -341,7 +341,7 @@ html, body {
     width: 85%;
     max-width: 280px;
     padding: 14px 0;
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
@@ -351,3 +351,80 @@ html, body {
   margin-right: 8px;
 }
 
+
+
+/* Container exclusivo do botão */
+.botao-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0;
+}
+
+/* Botão */
+.botao-pagina {
+  display: flex;               /* flex interno para ícone + texto */
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  max-width: 280px;
+  padding: 14px 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .botao-pagina {
+    font-size: 18px;
+    padding: 14px 0;
+  }
+}
+
+/* Ícones dentro do botão */
+.botao-pagina i,
+.botao-pagina svg {
+  margin-right: 8px;
+}
+
+/* Animação borda premium */
+.botao-pagina::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 30%, #00d4ff, #00ffe0, #00d4ff, transparent 70%);
+  animation: borda-premium 2.8s linear infinite;
+  z-index: -1;
+}
+
+.botao-pagina::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: inherit;
+  border-radius: 16px;
+  z-index: -1;
+}
+
+@keyframes borda-premium {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.botao-pagina:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.5);
+}
+
+.botao-pagina:active {
+  transform: scale(0.96);
+}
