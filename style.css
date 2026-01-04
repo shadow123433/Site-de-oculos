@@ -273,10 +273,9 @@ html, body {
 
 
 .botao-pagina {
-  display: inline-block;
   display: inline-flex;
-align-items: center;
-justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin: 40px auto;
   padding: 18px 42px;
   font-size: 17px;
@@ -331,9 +330,10 @@ justify-content: center;
 .botao-pagina:active {
   transform: scale(0.96);
 }
+
+/* MOBILE */
 @media (max-width: 768px) {
   .botao-pagina {
-    display: flex;
     width: 85%;
     max-width: 280px;
     margin: 20px auto;
@@ -346,6 +346,7 @@ justify-content: center;
 .botao-pagina svg {
   margin-right: 8px;
 }
+
 
 
 
