@@ -84,7 +84,7 @@ function mostrarProdutos(marca) {
       </select>
 
       <div class="preco">R$ ${produto.preco.toFixed(2)}</div>
-      <button type="button">Adicionar</button>
+      <button type="button">Adicionar ao carrinho</button>
     `;
 
     card.querySelector("img").onclick = () => {
@@ -123,7 +123,7 @@ function adicionarAoCarrinho(produto, cor, preco) {
   total += preco;
 
   atualizarCarrinho();
-  showToast("Item adicionado");
+  showToast("Este item foi adicionado ao carrinho");
 }
 
 function atualizarCarrinho() {
@@ -181,7 +181,7 @@ function removerItem(produto, cor) {
   }
 
   atualizarCarrinho();
-  showToast("Item removido");
+  showToast("Este item foi removido do carrinho");
 }
 
 /* =========================
