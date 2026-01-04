@@ -351,25 +351,3 @@ html, body {
   margin-right: 8px;
 }
 
-
-
-
-/* Container exclusivo do botão */
-.botao-container {
-  display: flex;               /* flex container */
-  justify-content: center;     /* centraliza horizontalmente */
-  width: 100%;                 /* ocupa a largura total da tela */
-  margin: 20px 0;              /* espaçamento acima e abaixo */
-}
-
-/* Botão */
-.botao-pagina {
-  display: flex;               /* mantém ícone + texto alinhados */
-  justify-content: center;     
-  align-items: center;
-  width: 85%;                  /* largura responsiva */
-  max-width: 280px;            /* limita no desktop */
-  padding: 14px 0;
-  font-size: 16px;
-}
-
