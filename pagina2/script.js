@@ -43,7 +43,7 @@ const produtosPorMarca = {
   ROMEO: [
     {
       nome: "Óculos Romeo 2 Full Metal",
-      preco: 349.9,
+      preco: 170,
       cores: ["Preto", "Prata"],
       imagem: "../IMAGEM-OCULOS/imagem1.jpg"
     }
@@ -195,9 +195,8 @@ modal.innerHTML = `
   <div class="modal">
     <h2>Confirmação do pedido</h2>
     <input id="nome" placeholder="Nome completo">
-    <input id="whats" placeholder="WhatsApp">
-    <input id="endereco" placeholder="Rua / Avenida">
-    <input id="numero" placeholder="Número">
+    <input id="endereco" placeholder="Rua / avenida">
+    <input id="numero" placeholder="Número da casa">
     <input id="referencia" placeholder="Referência">
     <div>
       <button id="cancelar">Cancelar</button>
@@ -231,12 +230,11 @@ modal.querySelector("#cancelar").onclick = () => {
 
 modal.querySelector("#confirmar").onclick = () => {
   const nome = modal.querySelector("#nome").value;
-  const whats = modal.querySelector("#whats").value;
   const endereco = modal.querySelector("#endereco").value;
-  const numero = modal.querySelector("#numero").value;
+  const numero = modal.querySelector("#numero").value.trim();
   const referencia = modal.querySelector("#referencia").value;
 
-  if (!nome || !whats || !endereco || !numero)
+  if (!nome || !endereco || !numero)
     return showToast("Preencha os campos obrigatórios");
 
   const pedidoID = gerarPedidoID();
@@ -253,11 +251,12 @@ modal.querySelector("#confirmar").onclick = () => {
 Pedido: ${pedidoID}
 
 Nome: ${nome}
-WhatsApp: ${whats}
 
-Endereço:
-${endereco}, Nº ${numero}
-${referencia ? "Ref: " + referencia : ""}
+Endereço: ${endereco}
+
+Número da casa: ${numero}
+
+${referencia ? "Referência: " + referencia : ""}
 
 Itens:
 ${itens}
@@ -266,7 +265,7 @@ ${itens}
 `.trim();
 
   window.open(
-    `https://wa.me/27998040952?text=${encodeURIComponent(mensagem)}`,
+    `https://wa.me/27997913970?text=${encodeURIComponent(mensagem)}`,
     "_blank"
   );
 

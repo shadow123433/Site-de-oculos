@@ -268,3 +268,75 @@ html, body {
     -ms-touch-action: pan-y;         /* compatibilidade com IE */
     overscroll-behavior-y: contain;  /* evita efeitos indesejados no scroll */
 }
+
+
+
+
+.botao-pagina {
+  display: inline-block;
+  margin: 40px auto;
+  padding: 18px 42px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+/* borda premium animada */
+.botao-pagina::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    #00d4ff,
+    #00ffe0,
+    #00d4ff,
+    transparent 70%
+  );
+  animation: borda-premium 2.8s linear infinite;
+  z-index: -1;
+}
+
+.botao-pagina::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: inherit;
+  border-radius: 16px;
+  z-index: -1;
+}
+
+@keyframes borda-premium {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.botao-pagina:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.5);
+}
+
+.botao-pagina:active {
+  transform: scale(0.96);
+}
+@media (max-width: 768px) {
+  .botao-pagina {
+    display: block;
+    width: 90%;
+    max-width: 360px;
+    margin: 32px auto;
+    text-align: center;
+    font-size: 16px;
+  }
+}
+
+
