@@ -206,6 +206,12 @@ modal.innerHTML = `
 `;
 
 document.body.appendChild(modal);
+const inputNumero = modal.querySelector("#numero");
+
+inputNumero.addEventListener("input", () => {
+  inputNumero.value = inputNumero.value.replace(/\D/g, "");
+});
+
 
 /* =========================
    EVENTOS
