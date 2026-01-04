@@ -331,14 +331,17 @@ html, body {
   transform: scale(0.96);
 }
 
-/* MOBILE */
+/* =====================
+   MOBILE (CORREÇÃO REAL)
+===================== */
 @media (max-width: 768px) {
   .botao-pagina {
+    display: flex;          /* 🔥 chave da correção */
     width: 85%;
     max-width: 280px;
-    margin: 20px auto;
-    font-size: 16px;
+    margin: 20px auto;      /* agora funciona 100% */
     padding: 14px 0;
+    font-size: 16px;
   }
 }
 
@@ -346,6 +349,7 @@ html, body {
 .botao-pagina svg {
   margin-right: 8px;
 }
+
 
 
 
