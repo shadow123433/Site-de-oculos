@@ -59,7 +59,7 @@ body {
 ========================= */
  .titulo-bg {
   position: relative;
-  background-image: url("../IMAGEM-BANNER/imagem2.png");
+  background-image: url("../IMAGEM-BANNER/imagem2.jpg");
   background-size: cover;          /* preenche tudo */
   background-position: center 24%;     /* ponto inicial do corte */
   min-height: 320px;               /* altura padrão desktop */
