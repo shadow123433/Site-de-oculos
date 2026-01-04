@@ -336,14 +336,17 @@ html, body {
 ===================== */
 @media (max-width: 768px) {
   .botao-pagina {
-    display: flex;          /* 🔥 chave da correção */
+    display: flex;          /* mantém ícone + texto alinhados */
+    justify-content: center; /* garante que conteúdo interno fique centrado */
     width: 85%;
     max-width: 280px;
-    margin: 20px auto;      /* agora funciona 100% */
+    margin-left: auto;
+    margin-right: auto;     /* garante centralização absoluta */
     padding: 14px 0;
     font-size: 16px;
   }
 }
+
 
 .botao-pagina i,
 .botao-pagina svg {
