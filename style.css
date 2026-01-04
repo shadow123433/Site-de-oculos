@@ -340,8 +340,6 @@ html, body {
     justify-content: center; /* garante que conteúdo interno fique centrado */
     width: 85%;
     max-width: 280px;
-    margin-left: auto;
-    margin-right: auto;     /* garante centralização absoluta */
     padding: 14px 0;
     font-size: 16px;
   }
@@ -351,6 +349,14 @@ html, body {
 .botao-pagina i,
 .botao-pagina svg {
   margin-right: 8px;
+}
+
+.botao-wrapper {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;     /* centraliza verticalmente, se necessário */
+  width: 100%;
+  margin: 20px 0;          /* espaçamento em cima e embaixo */
 }
 
 
