@@ -351,16 +351,25 @@ html, body {
   margin-right: 8px;
 }
 
-.botao-wrapper {
-  display: flex;
-  justify-content: center; /* centraliza horizontalmente */
-  align-items: center;     /* centraliza verticalmente, se necessário */
-  width: 100%;
-  margin: 20px 0;          /* espaçamento em cima e embaixo */
+
+
+
+/* Container exclusivo do botão */
+.botao-container {
+  display: flex;               /* flex container */
+  justify-content: center;     /* centraliza horizontalmente */
+  width: 100%;                 /* ocupa a largura total da tela */
+  margin: 20px 0;              /* espaçamento acima e abaixo */
 }
 
-
-
-
-
+/* Botão */
+.botao-pagina {
+  display: flex;               /* mantém ícone + texto alinhados */
+  justify-content: center;     
+  align-items: center;
+  width: 85%;                  /* largura responsiva */
+  max-width: 280px;            /* limita no desktop */
+  padding: 14px 0;
+  font-size: 16px;
+}
 
