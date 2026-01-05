@@ -162,9 +162,33 @@ h3 {
 
 .produtos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 26px;
+    grid-template-columns: repeat(2, 1fr); /* sempre 2 */
+    gap: 16px;
 }
+
+@media (max-width: 768px) {
+  .produto-card {
+    padding: 14px;
+  }
+
+  .produto-img {
+    height: 140px;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+
+  .preco {
+    font-size: 16px;
+  }
+
+  .produto-card button {
+    font-size: 13px;
+    padding: 12px;
+  }
+}
+
 
 .produto-card {
     background: #fff;
