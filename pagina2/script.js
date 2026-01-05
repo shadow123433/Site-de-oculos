@@ -42,10 +42,17 @@ function showToast(msg) {
 const produtosPorMarca = {
   ROMEO: [
     {
-      nome: "Óculos Romeo 2 Full Metal",
+      nome: "Óculos Romeo 2 Full Metal - PRETO",
       preco: 170,
-      cores: ["Preto", "Prata"],
-      imagem: "../IMAGEM-OCULOS/imagem1.jpg"
+      cores: ["Preto"],
+      imagem: "../IMAGEM-OCULOS/imagem1.png"
+    },
+  
+    {
+      nome: "Óculos Romeo 2 Full Metal - PRATA",
+      preco: 170,
+      cores: ["Prata"],
+      imagem: "../IMAGEM-OCULOS/imagem2.png"
     }
   ]
 };
@@ -78,10 +85,6 @@ function mostrarProdutos(marca) {
       <img src="${produto.imagem}" class="produto-img">
       <strong>${produto.nome}</strong>
 
-      <select>
-        <option value="">Selecione a cor</option>
-        ${produto.cores.map(c => `<option value="${c}">${c}</option>`).join("")}
-      </select>
 
       <div class="preco">R$ ${produto.preco.toFixed(2)}</div>
       <button type="button">Adicionar ao carrinho</button>
@@ -94,11 +97,10 @@ function mostrarProdutos(marca) {
       resetLightbox();
     };
 
-    card.querySelector("button").onclick = () => {
-      const cor = card.querySelector("select").value;
-      if (!cor) return showToast("Selecione uma cor");
-      adicionarAoCarrinho(produto.nome, cor, produto.preco);
-    };
+  card.querySelector("button").onclick = () => {
+  adicionarAoCarrinho(produto.nome, produto.cor, produto.preco);
+};
+
 
     produtosGrid.appendChild(card);
   });
