@@ -162,9 +162,16 @@ h3 {
 
 .produtos-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* sempre 2 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
+
+@media (max-width: 768px) {
+    .produtos-grid {
+        gap: 12px;
+    }
+}
+
 
 @media (max-width: 768px) {
   .produto-card {
@@ -446,11 +453,27 @@ h3 {
    RESPONSIVO
 ========================= */
 @media (max-width: 768px) {
-    body { padding: 0 12px; }
-    .titulo-bg { min-height: 220px; }
-    .titulo-bg h1 { font-size: 26px; }
-    .logo { width: 90px; }
+    body {
+        padding: 0 6px;
+    }
+
+    .container {
+        padding: 6px;
+    }
+
+    .titulo-bg {
+        min-height: 220px;
+    }
+
+    .titulo-bg h1 {
+        font-size: 26px;
+    }
+
+    .logo {
+        width: 90px;
+    }
 }
+
 
 
 
@@ -584,4 +607,15 @@ h3 {
   .botao-voltar-inicio::before {
     opacity: 0.6;
   }
+}
+
+
+@media (max-width: 768px) {
+    .marcas {
+        margin-top: 30px;
+    }
+
+    .produtos {
+        margin-top: 40px;
+    }
 }
